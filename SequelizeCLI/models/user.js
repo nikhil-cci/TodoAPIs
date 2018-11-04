@@ -11,8 +11,11 @@ module.exports = (sequelize, DataTypes) => {
 });
   User.associate = function(models) {
     // associations can be defined here
-    //User.hasOne(models.Designation)
-    User.hasMany(models.Task);
+    User.hasMany(models.Task, {
+      foreignKey: 'userId'
+    });
+
+    User.belongsTo(models.Designation)
   };
   return User;
 };

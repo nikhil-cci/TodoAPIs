@@ -5,7 +5,13 @@ const db = require('../models/index')
 
 var getAllTasks = function(req,res){
 
-    db.Task.findAll().then(tasks => {
+    db.Task.findAll({
+        include: [
+            {
+                model: db.User
+            }
+        ]
+    }).then(tasks => {
         if (tasks == null) res.status(500);
         else {
             res.status(200);
@@ -27,7 +33,15 @@ var getMyTasks = function(req,res){
     db.Task.findAll({
         where: {
             userId : req.query.userId
-        }
+        },
+        include: [
+            {
+                model: db.User
+            },
+            {
+                model: db.Priority
+            }
+        ]
     }).then(tasks => {
         if (tasks == null) res.status(500);
         else {
