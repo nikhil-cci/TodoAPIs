@@ -5,4 +5,6 @@ module.exports = function(app){
     app
     .route('/tasks')
     .get(taskController.getAllTasks)
+    .post(taskController.createTask);
+
 }

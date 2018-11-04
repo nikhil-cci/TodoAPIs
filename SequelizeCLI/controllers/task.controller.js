@@ -14,7 +14,16 @@ var getAllTasks = function(req,res){
     })
 }
 
+var createTask = function(req,res){
+    
+    var user = new db.Task(req.body);
+    user.save();
+    res.status(201);
+    res.send(user);
+}
+
 module.exports = {
-    getAllTasks
+    getAllTasks,
+    createTask
   };
   
