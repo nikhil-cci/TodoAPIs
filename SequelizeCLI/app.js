@@ -23,9 +23,10 @@ var test = db.sequelize.authenticate()
     .done();
 
 userRouter = require('./routes/user.routes');
+taskRouter = require('./routes/task.routes');
 
 userRouter(app);
-
+taskRouter(app);
 app.get('/', function(req,res){
     res.send("Welcome");
 });
