@@ -11,13 +11,13 @@ module.exports = {
         firstName: 'John',
         lastName: 'Doe',
         email: 'demo@demo.com',
-        designationId: '0'
+        designationId: '1'
       },
       {
         firstName: 'Nikhil',
         lastName: 'Gaonkar',
         email: 'nik@demo.com',
-        designationId: '0'
+        designationId: '2'
       }], {});
     
   },

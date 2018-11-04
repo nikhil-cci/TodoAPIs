@@ -11,12 +11,6 @@ module.exports = {
         description: 'Fill ace by the end of the day',
         userId: '1',
         priorityId : 2
-      },
-      {
-        title: 'Rest APIs',
-        description: 'Complete APIs for todo app',
-        userId: '2',
-        priorityId : 1
       }], {});
     
   },
