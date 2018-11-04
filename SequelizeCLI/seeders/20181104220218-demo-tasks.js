@@ -12,6 +12,18 @@ module.exports = {
         description: 'Complete APIs for todo app',
         userId: '2',
         priorityId : 1
+      },
+      {
+        title: 'Random',
+        description: 'Random description',
+        userId: '2',
+        priorityId : 1
+      },
+      {
+        title: 'Another task',
+        description: 'Another task description',
+        userId: '2',
+        priorityId : 3
       }], {});
     
   },
