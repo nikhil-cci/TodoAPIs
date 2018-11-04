@@ -1,0 +1,22 @@
+{
+  "name": "sequelizecli",
+  "version": "1.0.0",
+  "description": "demo seq cli",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "mysql2": "^1.6.1",
+    "sequelize": "^4.41.0",
+    "sequelize-cli": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.5"
+  }
+}
