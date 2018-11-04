@@ -22,8 +22,24 @@ var createTask = function(req,res){
     res.send(user);
 }
 
+var getMyTasks = function(req,res){
+   
+    db.Task.findAll({
+        where: {
+            userId : req.query.userId
+        }
+    }).then(tasks => {
+        if (tasks == null) res.status(500);
+        else {
+            res.status(200);
+            res.json(tasks);
+        }
+    })
+}
+
 module.exports = {
     getAllTasks,
-    createTask
+    createTask,
+    getMyTasks
   };
   

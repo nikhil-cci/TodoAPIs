@@ -7,4 +7,8 @@ module.exports = function(app){
     .get(taskController.getAllTasks)
     .post(taskController.createTask);
 
+    app
+    .route('/getMyTasks')
+    .get(taskController.getMyTasks)
+
 }
