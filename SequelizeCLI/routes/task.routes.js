@@ -5,10 +5,11 @@ module.exports = function(app){
     app
     .route('/tasks')
     .get(taskController.getAllTasks)
-    .post(taskController.createTask);
+    .post(taskController.createTask)
+    .delete(taskController.deleteTask);
+   
 
     app
     .route('/getMyTasks')
-    .get(taskController.getMyTasks)
-
+    .get(taskController.getMyTasks);
 }

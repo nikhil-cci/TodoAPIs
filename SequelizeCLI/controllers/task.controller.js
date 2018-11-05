@@ -51,9 +51,20 @@ var getMyTasks = function(req,res){
     })
 }
 
+var deleteTask = function(req,res){
+    db.Task.destroy({
+        where: {
+            id: req.query.id
+        }
+    }).then((value) => {
+        res.status(204).send({});
+    })
+}
+
 module.exports = {
     getAllTasks,
     createTask,
-    getMyTasks
+    getMyTasks,
+    deleteTask
   };
   
