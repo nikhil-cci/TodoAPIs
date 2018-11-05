@@ -1,10 +1,10 @@
 //Including dependency
+require('dotenv').config();
 var express = require('express'),
     Sequelize = require('sequelize'),
     bodyParser = require('body-parser')
     db = require('./models/index');
 
-require('dotenv').config();
 
 var app = express();
 var port = process.env.PORT || 3001;
