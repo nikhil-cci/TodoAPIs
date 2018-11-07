@@ -3,6 +3,7 @@
 const Joi = require('joi');
 const validationSchemas = require('../utils/validationSchemas');
 const constants = require('../utils/constants');
+const bcrypt = require('bcrypt');
 
 //const User = require('../models/user')
 const db = require('../models/index')
@@ -42,15 +43,18 @@ var createUser = function(req,res){
                 res.json(constants.DEFAULT_ERROR_MESSAGE_JSON);
             }
         }else{
-            db.User.create(req.body).then((user, err) => {
-                if(err){
-                    console.log(err)
-                    res.json(err);
-                }else{
+            bcrypt.hash(req.body.password, constants.saltRounds, (err, encrypted) => {
+                req.body.password = encrypted;
+                db.User.create(req.body).then((user) => {
                     console.log(user);
                     res.json(user);
-                }
-            })
+                },
+                (err) => {
+                    console.log(err)
+                    res.json(constants.DEFAULT_ERROR_MESSAGE_JSON_TEMPLATE
+                        .replace(constants.DEFAULT_ERROR_MESSAGE_JSON_TEMPLATE_KEY_MESSAGE, err.parent.sqlMessage));
+                })
+            });
         }
     });
 }
