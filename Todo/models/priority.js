@@ -2,9 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Priority = sequelize.define('Priority', {
     title: DataTypes.STRING
-  }, {
-    freezeTableName: true,
-    timestamps: false
+  }, {    
+    freezeTableName: true
 });
   Priority.associate = function(models) {
     // associations can be defined here

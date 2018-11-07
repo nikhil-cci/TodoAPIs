@@ -6,8 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     priorityId: DataTypes.INTEGER
   }, {
-    freezeTableName: true,
-    timestamps: false
+    freezeTableName: true
 });
   Task.associate = function(models) {
     // associations can be defined here

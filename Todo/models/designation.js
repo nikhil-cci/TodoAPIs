@@ -2,9 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Designation = sequelize.define('Designation', {
     title: DataTypes.STRING
-  }, {
-    freezeTableName: true,
-    timestamps: false
+  }, {    
+    freezeTableName: true
 });
   Designation.associate = function(models) {
     // associations can be defined here
