@@ -12,4 +12,8 @@ module.exports = function(app){
     .route('/users/:id')
     .get(userController.getUserById)
     .delete(userController.deleteUserById);
-}
+
+    app
+    .route('/login')
+    .post(userController.login)
+} 

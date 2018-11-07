@@ -4,12 +4,18 @@ const createUserSchema = Joi.object().keys({
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
     email: Joi.string().email({ minDomainAtoms: 2}),
-    password: Joi.string(),//.regex(/^[a-zA-Z0-9]{3,30}$/),
+    password: Joi.string().required(),//.regex(/^[a-zA-Z0-9]{3,30}$/),
     designationId: Joi.number().required()
 });
 
+const loginUserSchema = Joi.object().keys({
+    email: Joi.string().email({ minDomainAtoms: 2}),
+    password: Joi.string().required()
+});
+
 module.exports = {
-    createUserSchema
+    createUserSchema,
+    loginUserSchema
 }
 
 // const schema = Joi.object().keys({

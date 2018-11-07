@@ -31,8 +31,6 @@ var getUsers = function(req,res){
 
 var createUser = function(req,res){
     
-    var user = new db.User(req.body);
-
     Joi.validate(req.body, validationSchemas.createUserSchema, (err, value)=>{
         res.status(200);
         if(err){
@@ -97,11 +95,49 @@ var updateUserDetails = function(req,res){
         });
 }
 
+var login = function(req,res){
+    
+    Joi.validate(req.body, validationSchemas.loginUserSchema, (err, value)=>{
+        res.status(200);
+        if(err){
+            if(err.details.length !== 0){
+                console.log(err.details[0].message);
+                res.json(err.details[0]);
+            }else{
+                res.json(constants.DEFAULT_ERROR_MESSAGE_JSON);
+            }
+        }else{
+            db.User.findAll({
+                where : {
+                    email: req.body.email
+                }
+            }).then(users => {
+                if(users.length !== 0){
+                    bcrypt.compare(req.body.password, users[0].password, (err, same)=>{
+                        if(same){
+                            res.send("Logged in successfully")
+                        }else{
+                            res.send("Incorrect password")
+                        }
+                    })
+                }else{
+                    res.send('user not found')
+                }
+            },
+            (err) => {
+                console.log(err)
+                res.send('err.parent.sqlMessage')
+            })
+        }
+    });
+}
+
 module.exports = {
     getUsers,
     getUserById,
     createUser,
     deleteUserById,
-    updateUserDetails
+    updateUserDetails,
+    login
   };
   
