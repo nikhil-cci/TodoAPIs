@@ -1,5 +1,9 @@
 'use strict';
 
+const Joi = require('joi');
+const validationSchemas = require('../utils/validationSchemas');
+const constants = require('../utils/constants');
+
 //const User = require('../models/user')
 const db = require('../models/index')
 
@@ -28,14 +32,27 @@ var createUser = function(req,res){
     
     var user = new db.User(req.body);
 
-    if (!req.body.email) {
-        res.status(400);
-        res.send('Email is empty');
-    } else {
-        user.save();
-        res.status(201);
-        res.send(user);
-    }
+    Joi.validate(req.body, validationSchemas.createUserSchema, (err, value)=>{
+        res.status(200);
+        if(err){
+            if(err.details.length !== 0){
+                console.log(err.details[0].message);
+                res.json(err.details[0]);
+            }else{
+                res.json(constants.DEFAULT_ERROR_MESSAGE_JSON);
+            }
+        }else{
+            db.User.create(req.body).then((user, err) => {
+                if(err){
+                    console.log(err)
+                    res.json(err);
+                }else{
+                    console.log(user);
+                    res.json(user);
+                }
+            })
+        }
+    });
 }
 
 var getUserById = function(req,res){
