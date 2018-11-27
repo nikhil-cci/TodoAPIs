@@ -22,6 +22,13 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'Priority', key: 'id' }
       },
+      groupId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'TaskGroup', key: 'id' }
+      },
+      dueDate: {
+        type: Sequelize.DATE
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Task.belongsTo(models.User)
     Task.belongsTo(models.Priority)
+    Task.belongsTo(models.TaskGroup)
   };
   return Task;
 };
