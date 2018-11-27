@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Task.belongsTo(models.User)
     Task.belongsTo(models.Priority)
-    Task.belongsTo(models.TaskGroup)
+    Task.belongsTo(models.TaskGroup, {foreignKey: 'groupId', foreignKeyConstraint: true})
   };
   return Task;
 };
