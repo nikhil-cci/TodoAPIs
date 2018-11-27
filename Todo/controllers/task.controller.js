@@ -9,7 +9,14 @@ var getAllTasks = function(req,res){
     db.Task.findAll({
         include: [
             {
-                model: db.User
+                model: db.User,
+                attributes: ['firstName', 'lastName'],
+                include: [
+                    {
+                        model: db.Designation,
+                        attributes: ['title']
+                    }
+                ]
             },
             {
                 model: db.TaskGroup
@@ -44,7 +51,14 @@ var getMyTasks = function(req,res){
         },
         include: [
             {
-                model: db.User
+                model: db.User,
+                attributes: ['firstName', 'lastName'],
+                include: [
+                    {
+                        model: db.Designation,
+                        attributes: ['title']
+                    }
+                ]
             },
             {
                 model: db.Priority
@@ -111,7 +125,14 @@ var getTasksByGroupId = function(req,res){
 
         include: [
             {
-                model: db.User
+                model: db.User,
+                attributes: ['firstName', 'lastName'],
+                include: [
+                    {
+                        model: db.Designation,
+                        attributes: ['title']
+                    }
+                ]
             },
             {
                 model: db.TaskGroup
