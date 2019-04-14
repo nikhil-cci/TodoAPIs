@@ -32,7 +32,7 @@ var getMyTasks = function(req,res){
    
     db.Task.findAll({
         where: {
-            userId : req.query.userId
+            userId : req.user.id
         },
         include: [
             {

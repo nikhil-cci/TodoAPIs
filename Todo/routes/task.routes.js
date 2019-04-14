@@ -1,6 +1,7 @@
 'use strict'; 
 module.exports = function(app){
     var taskController = require('../controllers/task.controller');
+    var authServices = require('../services/auth.services');
 
     app
     .route('/tasks')
@@ -11,5 +12,5 @@ module.exports = function(app){
 
     app
     .route('/getMyTasks')
-    .get(taskController.getMyTasks);
+    .get(authServices.authJwt, taskController.getMyTasks);
 }
