@@ -6,10 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     designationId: DataTypes.INTEGER
-  }, {    
-    freezeTableName: true
-  });
-  User.associate = function(models) {
+  }, {
+      freezeTableName: true
+    });
+  User.associate = function (models) {
     // associations can be defined here
     User.hasMany(models.Task, {
       foreignKey: 'userId'
@@ -18,11 +18,13 @@ module.exports = (sequelize, DataTypes) => {
     User.belongsTo(models.Designation)
   };
 
-  User.prototype.toJSON =  function () {
+  User.prototype.toJSON = function () {
     var values = Object.assign({}, this.get());
-  
+
     delete values.password;
     return values;
   }
+
+
   return User;
 };

@@ -1,6 +1,7 @@
 'use strict'; 
 module.exports = function(app){
     var userController = require('../controllers/user.controller');
+    var authServices = require('../services/auth.services');
 
     app
     .route('/users')
@@ -15,5 +16,5 @@ module.exports = function(app){
 
     app
     .route('/login')
-    .post(userController.login)
-} 
+    .post(authServices.authLocal, userController.login)
+}
