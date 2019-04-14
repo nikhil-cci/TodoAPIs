@@ -5,7 +5,7 @@ module.exports = function(app){
 
     app
     .route('/users')
-    .get(userController.getUsers)
+    .get(authServices.authJwt ,userController.getUsers)
     .post(userController.createUser)
     .put(userController.updateUserDetails);
 

@@ -129,26 +129,26 @@ var login = function login(req, res, next) {
             //     res.send('err.parent.sqlMessage')
             // })
 
-            res.status(200).json(toAuthJSON(req.user.email));
+            res.status(200).json(toAuthJSON(req.user));
             //return next();
 
         } ``
     });
 }
 
-function createToken(email) {
+function createToken(id) {
     return jwt.sign(
         {
-            email: email,
+            _id: id,
         },
         constants.JWT_SECRET,
     );
 }
 
-function toAuthJSON(email) {
+function toAuthJSON(user) {
     return {
-        email: email,
-        token: `JWT ${createToken(email)}`,
+        email: user.email,
+        token: `JWT ${createToken(user.id)}`,
     };
 }
 

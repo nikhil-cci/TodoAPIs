@@ -8,7 +8,7 @@ const constants = require('../utils/constants');
 var userController = require('../controllers/user.controller');
 
 const localOpts = {
-    usernameField: 'email',
+    usernameField: 'email'
 };
 const localStrategy = new LocalStrategy(localOpts, async (email, password, done) => {
     try {
@@ -38,7 +38,7 @@ const jwtStrategy = new JWTStrategy(jwtOpts, async (payload, done) => {
     try {
         const user = await db.User.findOne({
             where : {
-                email : payload.email
+                id : payload._id
             }
         });
 
